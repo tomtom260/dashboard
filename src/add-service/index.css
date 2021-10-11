@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  top: 50px;
+
+  text-align: center;
+}
+
+.container__title {
+  text-align: center;
+}

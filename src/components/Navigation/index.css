@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* padding: 0 50px; */
+  padding: 0 50px;
   height: var(--height);
   display: flex;
   justify-content: space-around;

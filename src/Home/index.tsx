@@ -1,14 +1,12 @@
 import React from 'react'
-import Navigation from '../Navigation'
-import Service from '../service'
+import Service from '../components/service'
+import './index.css'
 
 function Home() {
   return (
     <div>
-      {/* <div>Navigation</div> */}
-      <Navigation />
       <div className='services'>
-        <p>Services</p>
+        <h1>Services</h1>
         <Service />
         <Service />
         <Service />

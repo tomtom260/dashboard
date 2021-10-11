@@ -1,13 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 
 function Navigation() {
   return (
     <nav className='navigation'>
-      <span className='navigation__items'>Home</span>
-      <span className='navigation__items'>Add Service</span>
-      <span className='navigation__items'>Inquiries</span>
-      <span className='navigation__items'>Logout</span>
+      <Link to='/'>Home</Link>
+      <Link to='/add-service'>Add Service</Link>
+      <Link to='/add-service'>Inquiry</Link>
+      <Link to='/add-service'>Logout</Link>
     </nav>
   )
 }

@@ -1,22 +1,19 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
+import { DetailsProps } from '../../Details'
 
-function Service() {
+function Service({ id, description, title }: DetailsProps) {
   return (
     <div className='card'>
-      <p className='card__title'>Employee managment system</p>
-      <p className='card__description'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit
-        nisi rem provident exercitationem sit? Expedita minima dolorum
-        aspernatur, veniam excepturi veritatis, voluptatem facere ipsa obcaecati
-        corporis accusantium, fugiat facilis laudantium! Lorem, ipsum dolor sit
-        amet consectetur adipisicing elit. Velit sed, ad deserunt iure similique
-        reiciendis at temporibus dignissimos vel! Odio nulla praesentium qui
-        veritatis quos non architecto deserunt officiis commodi?
-      </p>
-      <button className='card__button'>Details</button>
+      <p className='card__title'>{title}</p>
+      <p className='card__description'>{description}</p>
+      <Link to={`details/${id}`} className='card__button'>
+        Details
+      </Link>
     </div>
   )
 }
 
 export default Service
+
+

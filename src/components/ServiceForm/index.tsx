@@ -8,9 +8,17 @@ type FormData = FormEvent<HTMLFormElement> & {
   }
 }
 
-function ServiceForm() {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+type ServiceFormProps = {
+  title?: string
+  description?: string
+}
+
+function ServiceForm({
+  title: titleProps = '',
+  description: descriptionProps = '',
+}: ServiceFormProps) {
+  const [title, setTitle] = useState(titleProps)
+  const [description, setDescription] = useState(descriptionProps)
 
   const handleSubmit = (evt: FormData) => {
     evt.preventDefault()

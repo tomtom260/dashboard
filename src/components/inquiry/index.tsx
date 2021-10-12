@@ -1,7 +1,7 @@
 import './styles.css'
 
 type InquiryProps = {
-  id: number
+  id: string
   fullName: string
   email: string
   service: string

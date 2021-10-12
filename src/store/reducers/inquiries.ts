@@ -1,6 +1,11 @@
 type Payload = {
-  id: number
+  id: string
   user?: string
+}
+
+type ACtionTypeInit = {
+  type: 'init-inquiries'
+  payload: InquiriesType[]
 }
 
 type ActionType = {
@@ -9,24 +14,31 @@ type ActionType = {
 }
 
 export type InquiriesType = {
-  id: number
+  id: string
   email: string
   service: string
   date: number
   seen: boolean
   handledBy: string
+  fullName: string
 }
 
-const reducer = (state: InquiriesType[] = [], action: ActionType) => {
-  const inquiryIndex = state.findIndex(
-    inquiry => inquiry.id === action.payload.id
-  )
+const reducer = (
+  state: InquiriesType[] = [],
+  action: ActionType | ACtionTypeInit
+) => {
+  let inquiryIndex: number
+  if (action.type === 'seen' || action.type === 'handled') {
+    inquiryIndex = state.findIndex(inquiry => inquiry.id === action.payload.id)
+  }
   switch (action.type) {
+    case 'init-inquiries':
+      return action.payload
     case 'seen':
-      state[inquiryIndex].seen = true
+      state[inquiryIndex!].seen = true
       return state
     case 'handled':
-      state[inquiryIndex].handledBy = action.payload.user!
+      state[inquiryIndex!].handledBy = action.payload.user!
       return state
     default:
       return state

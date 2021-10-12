@@ -4,13 +4,14 @@ import {
   getDocs,
   query,
   setDoc,
+  getDoc,
   deleteDoc,
   doc,
 } from 'firebase/firestore'
 import db from '../../firebase'
 import { ServiceType } from '../reducers/services'
 
-const addServiceToRedux = (dispatch: any, payload: any) => {
+export const addServiceToRedux = (dispatch: any, payload: ServiceType) => {
   dispatch({
     type: 'add-service',
     payload,
@@ -65,7 +66,6 @@ const editServiceFromRedux = (dispatch: any, payload: ServiceType) => {
 
 export const removeService =
   (payload: { id: string }) => async (dispatch: any) => {
-    console.log('hello')
     await deleteDoc(doc(db, 'services', payload.id))
     removeServiceFromRedux(dispatch, payload)
   }
@@ -75,6 +75,11 @@ const removeServiceFromRedux = (dispatch: any, payload: { id: string }) => {
     type: 'remove-service',
     payload,
   })
+}
+
+export const fetchService = async (payload: { id: string }) => {
+  const service = await (await getDoc(doc(db, 'services', payload.id))).data()
+  return service
 }
 
 // Works like partial but for specfic keys in K

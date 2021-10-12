@@ -43,9 +43,13 @@ const reducer = (
   switch (action.type) {
     case 'init-service':
       return action.payload
+
     case 'add-service':
-      state.push(action.payload)
+      if (action.payload.id)
+        if (!state.find(serv => serv.id === action.payload.id))
+          state.push(action.payload)
       return state
+
     case 'edit-service':
       const serviceIndex = state.findIndex(
         service => service.id === action.payload.id

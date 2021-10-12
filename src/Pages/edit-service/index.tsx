@@ -1,13 +1,25 @@
 import ServiceForm from '../../components/ServiceForm'
-import { useLocation } from 'react-router'
+import { useParams } from 'react-router'
 import './styles.css'
+import { useContext } from 'react'
+import { UIContext } from '../../utils/UIProvider'
+import useService from '../../utils/useService'
 
 function EditService() {
-  const { state: service }: any = useLocation()
+  const { id } = useParams<{ id: string }>()
+
+  const { loading, toggleLoadingState } = useContext(UIContext)
+
+  let service = useService(id, toggleLoadingState)
+
   return (
     <div className='container'>
       <h1>Edit Service</h1>
-      <ServiceForm title={service.title} description={service.description   } />
+      {loading ? (
+        <div>LOADING...</div>
+      ) : (
+        <ServiceForm title={service.title} description={service.description} />
+      )}
     </div>
   )
 }

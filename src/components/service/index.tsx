@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom'
 import './index.css'
-import { DetailsProps } from '../../Details'
+import { DetailsProps } from '../../Pages/edit-service/Details'
 
-function Service({ id, description, title }: DetailsProps) {
+function Service({
+  id,
+  description,
+  title,
+}: Pick<DetailsProps, 'title' | 'description' | 'id'>) {
   return (
     <div className='card'>
       <p className='card__title'>{title}</p>
@@ -15,5 +19,3 @@ function Service({ id, description, title }: DetailsProps) {
 }
 
 export default Service
-
-

@@ -1,24 +1,37 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
+import { StoreType } from '../../../store'
+import { DetailsType } from '../../../store/reducers/details'
 import './styles.css'
 
-import { services } from '../Home'
+// import { services } from '../../Home'
 
 export type DetailsProps = {
-  id: number
+  id: string
   title: string
   description: string
-}
-
-const handleRemove = (id: number) => {
-  console.log(`remove service ${id}`)
+  addedBy: string
+  dateInserted: number
 }
 
 function Details() {
-  let { id: slug_id } = useParams<{ id?: string }>()
-  let id = parseInt(slug_id!)
-  const { title, description } = services.find(service => service.id === id)!
+  const dispatch = useDispatch()
+  const handleRemove = (id: string) => {
+    dispatch({
+      type: 'remove-service',
+      payload: {
+        id,
+      },
+    })
+  }
+
+  const { id: slug_id } = useParams<{ id?: string }>()
+  const { id, date, description, title, addedBy } = useSelector<
+    StoreType,
+    DetailsType
+  >(state => state.details.find(det => det.id === slug_id!)!)
 
   return (
     <div className='details__container'>
@@ -27,6 +40,8 @@ function Details() {
       <p className='details__description'>{description}</p>
       <p className='details__description'>{description}</p>
       <p className='details__description'>{description}</p>
+      <p> added by: {addedBy} </p>
+      <p>{date}</p>
 
       <Link
         to={{

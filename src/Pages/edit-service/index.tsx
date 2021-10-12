@@ -1,4 +1,4 @@
-import ServiceForm from '../components/ServiceForm'
+import ServiceForm from '../../components/ServiceForm'
 import { useLocation } from 'react-router'
 import './styles.css'
 

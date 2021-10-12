@@ -1,4 +1,7 @@
 import React, { FormEvent, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams, useRouteMatch } from 'react-router'
+import { addService, editService } from '../../store/actions/services'
 import './index.css'
 
 type FormData = FormEvent<HTMLFormElement> & {
@@ -20,9 +23,30 @@ function ServiceForm({
   const [title, setTitle] = useState(titleProps)
   const [description, setDescription] = useState(descriptionProps)
 
+  const dispatch = useDispatch()
+  const match = useRouteMatch()
+  const { id } = useParams<{ id: string }>()
+
   const handleSubmit = (evt: FormData) => {
     evt.preventDefault()
-    console.log(evt.target.title.value, evt.target.description.value)
+
+    if (match.path.includes('add')) {
+      console.log('add')
+      addService(dispatch, {
+        title,
+        description,
+        user: 'user45',
+        id: '596',
+      })
+    } else {
+      console.log('edit')
+      editService(dispatch, {
+        title,
+        description,
+        user: 'user45',
+        id: id,
+      })
+    }
   }
 
   return (

@@ -1,4 +1,3 @@
-import React from 'react'
 import ServiceForm from '../../components/ServiceForm'
 import './index.css'
 

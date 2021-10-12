@@ -8,7 +8,6 @@ function Home() {
   const services = useSelector<StoreType, ServiceType[]>(
     state => state.services
   )
-  console.log(services)
 
   return (
     <div>

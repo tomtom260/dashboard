@@ -1,37 +1,33 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { StoreType } from '../../../store'
-import { DetailsType } from '../../../store/reducers/details'
+import { StoreType } from '../../store'
+import { removeService } from '../../store/actions/services'
+import { ServiceType } from '../../store/reducers/services'
 import './styles.css'
 
 // import { services } from '../../Home'
 
-export type DetailsProps = {
-  id: string
-  title: string
-  description: string
-  addedBy: string
-  dateInserted: number
-}
+// export type DetailsProps = {
+//   id: string
+//   title: string
+//   description: string
+//   addedBy: string
+//   dateInserted: number
+// }
 
 function Details() {
   const dispatch = useDispatch()
   const handleRemove = (id: string) => {
-    dispatch({
-      type: 'remove-service',
-      payload: {
-        id,
-      },
-    })
+    dispatch(removeService({ id }))
   }
 
   const { id: slug_id } = useParams<{ id?: string }>()
   const { id, date, description, title, addedBy } = useSelector<
     StoreType,
-    DetailsType
-  >(state => state.details.find(det => det.id === slug_id!)!)
+    ServiceType
+  >(state => state.services.find(service => service.id === slug_id!)!)
 
   return (
     <div className='details__container'>

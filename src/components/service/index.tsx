@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import './index.css'
-import { DetailsProps } from '../../Pages/edit-service/Details'
+import { ServiceType } from '../../store/reducers/services'
 
 function Service({
   id,
   description,
   title,
-}: Pick<DetailsProps, 'title' | 'description' | 'id'>) {
+}: Pick<ServiceType, 'title' | 'description' | 'id'>) {
   return (
     <div className='card'>
       <p className='card__title'>{title}</p>

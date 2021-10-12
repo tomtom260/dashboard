@@ -31,21 +31,24 @@ function ServiceForm({
     evt.preventDefault()
 
     if (match.path.includes('add')) {
-      console.log('add')
-      addService(dispatch, {
-        title,
-        description,
-        user: 'user45',
-        id: '596',
-      })
+      dispatch(
+        addService({
+          title,
+          description,
+          addedBy: 'user45',
+          date: Date.now(),
+        })
+      )
     } else {
-      console.log('edit')
-      editService(dispatch, {
-        title,
-        description,
-        user: 'user45',
-        id: id,
-      })
+      dispatch(
+        editService({
+          title,
+          description,
+          addedBy: 'user45',
+          date: Date.now(),
+          id,
+        })
+      )
     }
   }
 

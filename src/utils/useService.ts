@@ -14,7 +14,7 @@ function useService(id: string, toggleLoadingState: (value: boolean) => void) {
       // check from firestore
       fetchService({ id }).then(val => {
         serv = val as ServiceType
-        addServiceToRedux(dispatch, serv)
+        serv && addServiceToRedux(dispatch, serv)
         toggleLoadingState(false)
       })
     }

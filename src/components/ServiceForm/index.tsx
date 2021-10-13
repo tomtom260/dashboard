@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useParams, useRouteMatch } from 'react-router'
+import { useHistory, useParams, useRouteMatch } from 'react-router'
 import { addService, editService } from '../../store/actions/services'
 import './index.css'
 
@@ -24,14 +24,15 @@ function ServiceForm({
   const [description, setDescription] = useState(descriptionProps)
 
   const dispatch = useDispatch()
+  const history = useHistory()
   const match = useRouteMatch()
   const { id } = useParams<{ id: string }>()
 
-  const handleSubmit = (evt: FormData) => {
+  const handleSubmit = async (evt: FormData) => {
     evt.preventDefault()
 
     if (match.path.includes('add')) {
-      dispatch(
+      await dispatch(
         addService({
           title,
           description,
@@ -40,7 +41,7 @@ function ServiceForm({
         })
       )
     } else {
-      dispatch(
+      await dispatch(
         editService({
           title,
           description,
@@ -50,6 +51,7 @@ function ServiceForm({
         })
       )
     }
+    history.push('/')
   }
 
   return (

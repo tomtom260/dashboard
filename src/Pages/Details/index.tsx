@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { removeService } from '../../store/actions/services'
 import { UIContext } from '../../utils/UIProvider'
@@ -9,17 +9,28 @@ import './styles.css'
 
 function Details() {
   const dispatch = useDispatch()
-  const handleRemove = (id: string) => {
-    dispatch(removeService({ id }))
+  const history = useHistory()
+
+  const handleRemove = async (id: string) => {
+    await dispatch(removeService({ id }))
+    history.push('/')
   }
 
   const { id: slug_id } = useParams<{ id: string }>()
   const { toggleLoadingState, loading } = useContext(UIContext)
 
-  const { id, date, description, title, addedBy } = useService(
-    slug_id,
-    toggleLoadingState
-  )
+  const serviceDetails = useService(slug_id, toggleLoadingState)
+
+  if (!serviceDetails.title) {
+    return (
+      <div className='container'>
+        <h1>No Service with this id {slug_id} exists</h1>
+      </div>
+    )
+  }
+
+  const { id, date, description, title, addedBy } = serviceDetails
+
   return loading ? (
     <div>loading</div>
   ) : (

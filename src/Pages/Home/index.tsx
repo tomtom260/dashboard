@@ -1,7 +1,9 @@
+import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import Service from '../../components/service'
 import { StoreType } from '../../store'
 import { ServiceType } from '../../store/reducers/services'
+import { UIContext } from '../../utils/UIProvider'
 import './index.css'
 
 function Home() {
@@ -9,7 +11,11 @@ function Home() {
     state => state.services
   )
 
-  return (
+  const { loading } = useContext(UIContext)
+
+  return loading ? (
+    <div className='container'>LOADING...</div>
+  ) : (
     <div>
       <div className='services'>
         <h1>Services</h1>

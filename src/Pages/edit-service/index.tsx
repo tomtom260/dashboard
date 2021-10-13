@@ -12,6 +12,14 @@ function EditService() {
 
   let service = useService(id, toggleLoadingState)
 
+  if (!service.title) {
+    return (
+      <div className='container'>
+        <h1>No Service with this id {id} exists</h1>
+      </div>
+    )
+  }
+
   return (
     <div className='container'>
       <h1>Edit Service</h1>

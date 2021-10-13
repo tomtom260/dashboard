@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import AuthForm from '../../components/form'
+import AuthForm from '../../components/AuthForm'
 import { handleSignIn } from '../../utils/authActions'
 
 type StateType = {

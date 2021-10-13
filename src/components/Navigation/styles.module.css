@@ -1,0 +1,33 @@
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  /* z-index: 20; */
+  background-color: white;
+}
+
+.navigation__links {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .navigation button,
+  .navigation__links {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .navigation__menu {
+    display: none;
+  }
+}

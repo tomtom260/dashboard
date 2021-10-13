@@ -1,15 +1,13 @@
-import { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import { useContext, useEffect } from 'react'
 import Service from '../../components/service'
-import { StoreType } from '../../store'
-import { ServiceType } from '../../store/reducers/services'
 import { UIContext } from '../../utils/UIProvider'
+import useServices from '../../utils/useServices'
 import './index.css'
 
 function Home() {
-  const services = useSelector<StoreType, ServiceType[]>(
-    state => state.services
-  )
+  useEffect(() => {}, [])
+  const { toggleLoadingState } = useContext(UIContext)
+  const services = useServices(toggleLoadingState)
 
   const { loading } = useContext(UIContext)
 

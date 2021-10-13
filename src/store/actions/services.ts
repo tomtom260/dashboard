@@ -61,6 +61,7 @@ export const fetchServices = async (dispatch: any) => {
     type: 'init-service',
     payload: services,
   })
+  return services
 }
 
 const editServiceFromRedux = (dispatch: any, payload: ServiceType) => {

@@ -5,25 +5,14 @@ import Navigation from './components/Navigation'
 import Details from './Pages/Details'
 import EditService from './Pages/edit-service'
 import InquriesPage from './Pages/inquries-page'
-import { useDispatch } from 'react-redux'
-import { useContext, useEffect } from 'react'
-import { fetchServices } from './store/actions/services'
 import NotFoundPage from './Pages/not-found_page'
-import { UIContext } from './utils/UIProvider'
 import SignUp from './Pages/signup'
 import SignIn from './Pages/signin'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
+import Footer from './components/Footer'
 
 function Router() {
-  const dispatch = useDispatch()
-  const { toggleLoadingState } = useContext(UIContext)
-
-  useEffect(() => {
-    toggleLoadingState(true)
-    dispatch(fetchServices)
-    toggleLoadingState(false)
-  }, [dispatch, toggleLoadingState])
   return (
     <BrowserRouter>
       <Navigation />
@@ -37,6 +26,7 @@ function Router() {
         <PublicRoute path='/signin' exact component={SignIn} />
         <Route component={NotFoundPage} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   )
 }

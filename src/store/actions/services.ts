@@ -28,7 +28,13 @@ export const addService =
   }
 
 export const editService =
-  (payload: PartialK<ServiceType, 'id'>) => async (dispatch: any) => {
+  (
+    payload: Partial<ServiceType> & {
+      lastModifiedBy: string
+      lastModifiedAt: number
+    }
+  ) =>
+  async (dispatch: any) => {
     const { id } = payload
     delete payload['id']
     await setDoc(doc(db, 'services', id!), payload, {
@@ -38,7 +44,7 @@ export const editService =
     editServiceFromRedux(dispatch, {
       ...payload,
       id: id!,
-    })
+    } as ServiceType)
   }
 
 export const fetchServices = async (dispatch: any) => {
@@ -84,9 +90,9 @@ export const fetchService = async (payload: { id: string }) => {
 
 // Works like partial but for specfic keys in K
 
-type PartialK<T, K extends PropertyKey = PropertyKey> = Partial<
-  Pick<T, Extract<keyof T, K>>
-> &
-  Omit<T, K> extends infer O
-  ? { [P in keyof O]: O[P] }
-  : never
+// type PartialK<T, K extends PropertyKey = PropertyKey> = Partial<
+//   Pick<T, Extract<keyof T, K>>
+// > &
+//   Omit<T, K> extends infer O
+//   ? { [P in keyof O]: O[P] }
+//   : never

@@ -1,0 +1,22 @@
+.details__card {
+  position: relative;
+}
+
+.details__title {
+  margin-top: 9rem;
+}
+
+.card__buttons {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  width: 7rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details__del_icon {
+  font-size: 2.3rem;
+}

@@ -1,5 +1,6 @@
 import { useReducer } from 'react'
 import { useLocation } from 'react-router'
+import styles from './styles.module.css'
 
 const reducer = (state, { payload, type }) => {
   switch (type) {
@@ -39,25 +40,27 @@ function AuthForm({ formItems, handleSubmit }) {
 
   const [state, dispatch] = useReducer(reducer, initialState)
   let path
-  location.pathname.includes('login') ? (path = 'login') : (path = 'register')
+  location.pathname.includes('signin') ? (path = 'Sign In') : (path = 'Sign Up')
 
   return (
-    <div>
-      <h1>{path === 'login' ? 'Login' : 'Register'}</h1>
+    <div className='container'>
+      <h1>{path}</h1>
       <form
         onSubmit={e => {
           e.preventDefault()
           handleSubmit(state)
         }}
+        className='form'
       >
         <>
           {formItems.map(item => {
             return (
-              <div key={item}>
+              <div className='form__input' key={item}>
                 <label htmlFor={`form-${item}`}>
                   {item.slice(0, 1).toUpperCase() + item.slice(1)}
                 </label>
                 <input
+                  className={styles[`form__input-${item}`]}
                   type={inputType(item)}
                   id={`form-${item}`}
                   placeholder={item.slice(0, 1).toUpperCase() + item.slice(1)}
@@ -70,7 +73,7 @@ function AuthForm({ formItems, handleSubmit }) {
           })}
           <input
             type='submit'
-            className='btn'
+            className='button--primary'
             value={path === 'register' ? 'Register' : 'Login'}
           />
         </>

@@ -1,8 +1,9 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams, useRouteMatch } from 'react-router'
 import { addService, editService } from '../../store/actions/services'
-import './index.css'
+import { AuthContext } from '../../utils/AuthProvider'
+import styles from './styles.module.css'
 
 type FormData = FormEvent<HTMLFormElement> & {
   target: {
@@ -27,6 +28,7 @@ function ServiceForm({
   const history = useHistory()
   const match = useRouteMatch()
   const { id } = useParams<{ id: string }>()
+  const { user } = useContext(AuthContext)
 
   const handleSubmit = async (evt: FormData) => {
     evt.preventDefault()
@@ -36,8 +38,8 @@ function ServiceForm({
         addService({
           title,
           description,
-          addedBy: 'user45',
-          date: Date.now(),
+          addedBy: user?.displayName!,
+          createdAt: Date.now(),
         })
       )
     } else {
@@ -45,8 +47,8 @@ function ServiceForm({
         editService({
           title,
           description,
-          addedBy: 'user45',
-          date: Date.now(),
+          lastModifiedBy: user?.displayName!,
+          lastModifiedAt: Date.now(),
           id,
         })
       )
@@ -55,27 +57,29 @@ function ServiceForm({
   }
 
   return (
-    <form className='service_form' onSubmit={handleSubmit}>
-      <div className='service_form__input'>
+    <form className={styles.service_form} onSubmit={handleSubmit}>
+      <div className={styles.service_form__input}>
         <label htmlFor='title'>Service Title</label>
         <input
           name='title'
           type='text'
-          className='service_form__title'
+          // className='service_form__input'
           value={title}
+          placeholder='Title'
           onChange={event => setTitle(event.target.value)}
         />
       </div>
-      <div className='service_form__input'>
+      <div className={styles.service_form__input}>
         <label htmlFor='description'>Description</label>
         <textarea
           name='description'
-          className='service_form__description'
+          placeholder='Description'
+          // className='service_form__description'
           value={description}
           onChange={event => setDescription(event.target.value)}
         />
       </div>
-      <input type='submit' />
+      <input className='button--primary' type='submit' />
     </form>
   )
 }

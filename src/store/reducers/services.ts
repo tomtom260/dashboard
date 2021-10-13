@@ -12,8 +12,10 @@ export type ServiceType = {
   id: string
   title: string
   description: string
-  date: number
   addedBy: string
+  createdAt: number
+  lastModifiedAt?: number
+  lastModifiedBy?: string
 }
 
 // const initialState = fetchServices()
@@ -54,7 +56,7 @@ const reducer = (
       const serviceIndex = state.findIndex(
         service => service.id === action.payload.id
       )
-      state[serviceIndex] = action.payload
+      state[serviceIndex] = { ...state[serviceIndex], ...action.payload }
       return state
     case 'remove-service':
       return state.filter(service => service.id !== action.payload.id)

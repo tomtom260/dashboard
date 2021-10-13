@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { handleLogout } from '../../utils/authActions'
 import styles from './styles.module.css'
+import { FaTimes } from 'react-icons/fa'
 
 type SidebarProps = {
   visible: boolean
@@ -15,7 +16,7 @@ function Sidebar({ visible, setVisible }: SidebarProps) {
       }
     >
       <div onClick={() => setVisible(false)} className={styles.sidebar__close}>
-        close
+        <FaTimes />
       </div>
       <div className={styles.sidebar__links}>
         <Link onClick={() => setVisible(false)} to='/'>

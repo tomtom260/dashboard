@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { handleLogout } from '../../utils/authActions'
 import Sidebar from '../SideBar'
 import styles from './styles.module.css'
+import { FiMenu } from 'react-icons/fi'
 
 function Navigation() {
   const [visible, setVisible] = useState<boolean>(false)
@@ -23,7 +24,7 @@ function Navigation() {
           onClick={() => setVisible(true)}
           className={styles.navigation__menu}
         >
-          icon
+          <FiMenu />
         </div>
       </nav>
     </>

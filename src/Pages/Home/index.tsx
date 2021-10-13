@@ -14,10 +14,10 @@ function Home() {
   const { loading } = useContext(UIContext)
 
   return loading ? (
-    <div className='container'>LOADING...</div>
+    <div className='loading-container'>LOADING...</div>
   ) : (
     <div>
-      <div className='services'>
+      <div className='container'>
         <h1>Services</h1>
         {services.map(service => (
           <Service
@@ -28,7 +28,6 @@ function Home() {
           />
         ))}
       </div>
-      <div>Footer</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import './styles.css'
+import styles from './styles.module.css'
 
 type InquiryProps = {
   id: string
@@ -10,7 +10,7 @@ type InquiryProps = {
 
 function Inquiry({ fullName, email, service, date, id }: InquiryProps) {
   return (
-    <div className='inquiry'>
+    <div className='card'>
       <h2>{fullName}</h2>
       <h3>{email}</h3>
       <p>{service}</p>

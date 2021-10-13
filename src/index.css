@@ -5,12 +5,16 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
 }
 
 @media screen and (max-width: 600px) {
   html {
-    font-size: 10px;
+    font-size: 50%;
   }
 }
 
@@ -33,9 +37,124 @@ code {
     monospace;
 }
 
+.container {
+  position: relative;
+  top: 7rem;
+  text-align: center;
+}
+
+/* ----------------------- Button ------------------------------------ */
+
 .button--text {
   border: none;
   background-color: transparent;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
 }
+
+.button--primary {
+  width: 10rem;
+  border-radius: 2rem;
+  padding: 1rem 3rem;
+  border: none;
+  background-color: black;
+  color: white;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ------------------- Card ------------------------------------- */
+
+.card {
+  border-right: 1px solid rgba(121, 113, 113, 0.322);
+  border-top: 1px solid rgba(121, 113, 113, 0.322);
+  max-width: 60%;
+  margin: 3rem auto;
+  border-radius: 3rem;
+  padding: 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card__title {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card {
+    max-width: 100%;
+    padding: 3rem 3rem;
+  }
+}
+
+/* -----------------Form -------------------------------- */
+
+.form {
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 8rem 10rem;
+  border-right: 1px solid rgba(121, 113, 113, 0.322);
+  border-top: 1px solid rgba(121, 113, 113, 0.322);
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5rem;
+}
+
+.form__input {
+  margin: 15px;
+}
+
+.form__input input {
+  height: 4rem;
+}
+
+.form__input textarea {
+  height: 15rem;
+  margin-left: 2.5rem;
+}
+
+.form__input textarea,
+.form__input input {
+  width: 70%;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(121, 113, 113, 0.5);
+  outline: 1px solid rgba(121, 113, 113, 0.5);
+  margin-left: 2.5rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .form {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .form {
+    max-width: 100%;
+    padding: 3rem 3rem;
+  }
+
+  .form__input textarea,
+  .form__input input {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* @media screen and (max-width: 600) {
+  .service_form {
+    max-width: 100%;
+  }
+} */

@@ -10,6 +10,10 @@ import { useContext, useEffect } from 'react'
 import { fetchServices } from './store/actions/services'
 import NotFoundPage from './Pages/not-found_page'
 import { UIContext } from './utils/UIProvider'
+import SignUp from './Pages/signup'
+import SignIn from './Pages/signin'
+import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
 
 function Router() {
   const dispatch = useDispatch()
@@ -20,16 +24,17 @@ function Router() {
     dispatch(fetchServices)
     toggleLoadingState(false)
   }, [dispatch, toggleLoadingState])
-
   return (
     <BrowserRouter>
       <Navigation />
       <Switch>
-        <Route path='/add-service' component={AddService} />
-        <Route path='/' exact component={Home} />
-        <Route path='/details/:id' exact component={Details} />
-        <Route path='/edit/:id' exact component={EditService} />
-        <Route path='/inquiry' exact component={InquriesPage} />
+        <PrivateRoute path='/add-service' component={AddService} />
+        <PrivateRoute path='/' exact component={Home} />
+        <PrivateRoute path='/details/:id' exact component={Details} />
+        <PrivateRoute path='/edit/:id' exact component={EditService} />
+        <PrivateRoute path='/inquiry' exact component={InquriesPage} />
+        <PublicRoute path='/signup' exact component={SignUp} />
+        <PublicRoute path='/signin' exact component={SignIn} />
         <Route component={NotFoundPage} />
       </Switch>
     </BrowserRouter>

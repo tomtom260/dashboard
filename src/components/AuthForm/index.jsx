@@ -1,5 +1,6 @@
 import { useReducer } from 'react'
 import { useLocation } from 'react-router'
+import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
 const reducer = (state, { payload, type }) => {
@@ -71,12 +72,13 @@ function AuthForm({ formItems, handleSubmit }) {
               </div>
             )
           })}
-          <input
-            type='submit'
-            className='button--primary'
-            value={path === 'register' ? 'Register' : 'Login'}
-          />
+          <input type='submit' className='button--primary' value={path} />
         </>
+        <div className={styles.form__link}>
+          <Link to={path === 'Sign In' ? 'signup' : 'signin'}>
+            {path === 'Sign In' ? 'Sign Up' : 'Sign In'}
+          </Link>
+        </div>
       </form>
     </div>
   )

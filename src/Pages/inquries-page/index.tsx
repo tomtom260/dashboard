@@ -45,21 +45,23 @@ function InquriesPage() {
     state => state.inquiries
   )
 
-  return loading ? (
-    <div>LOADING...</div>
-  ) : (
+  return (
     <div className='container'>
       <h1 className='container__title'>Inquries</h1>
-      {inquiries.map(inq => (
-        <Inquiry
-          key={inq.id}
-          fullName={inq.fullName}
-          date={inq.date}
-          email={inq.email}
-          service={inq.service}
-          id={inq.id}
-        />
-      ))}
+      {loading ? (
+        <div>LOADING...</div>
+      ) : (
+        inquiries.map(inq => (
+          <Inquiry
+            key={inq.id}
+            fullName={inq.fullName}
+            date={inq.date}
+            email={inq.email}
+            service={inq.service}
+            id={inq.id}
+          />
+        ))
+      )}
     </div>
   )
 }

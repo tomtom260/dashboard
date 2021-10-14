@@ -2,3 +2,7 @@
   position: relative;
   left: 1.6rem;
 }
+
+.form__link {
+  margin-top: 2rem;
+}

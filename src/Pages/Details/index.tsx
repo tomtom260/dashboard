@@ -40,38 +40,40 @@ function Details() {
     lastModifiedBy,
   } = serviceDetails
 
-  return loading ? (
-    <div>loading</div>
-  ) : (
+  return (
     <div className='container'>
-      <div className={`card ${styles.details__card}`}>
-        <h1 className={styles.details__title}>{title}</h1>
-        <p className='details__description'>{description}</p>
-        {/* <p className='details__description'>{description}</p>
+      {loading ? (
+        <div>loading</div>
+      ) : (
+        <div className={`card ${styles.details__card}`}>
+          <h1 className={styles.details__title}>{title}</h1>
+          <p className='details__description'>{description}</p>
+          {/* <p className='details__description'>{description}</p>
         <p className='details__description'>{description}</p>
         <p className='details__description'>{description}</p> */}
-        <p> added by: {addedBy} </p>
-        <p>date created:{new Date(createdAt).toLocaleString()}</p>
-        {lastModifiedBy && <p> last modified by: {lastModifiedBy} </p>}
-        {lastModifiedAt && (
-          <p>modified at:{new Date(lastModifiedAt).toLocaleString()}</p>
-        )}
-        <div className={styles.card__buttons}>
-          <Link
-            to={{
-              pathname: `/edit/${id}`,
-            }}
-          >
-            <FaPencilAlt />
-          </Link>
-          <button
-            onClick={() => handleRemove(id)}
-            className={`button--text  ${styles.details__del_icon}`}
-          >
-            <FaTimes />
-          </button>
+          <p> added by: {addedBy} </p>
+          <p>date created:{new Date(createdAt).toLocaleString()}</p>
+          {lastModifiedBy && <p> last modified by: {lastModifiedBy} </p>}
+          {lastModifiedAt && (
+            <p>modified at:{new Date(lastModifiedAt).toLocaleString()}</p>
+          )}
+          <div className={styles.card__buttons}>
+            <Link
+              to={{
+                pathname: `/edit/${id}`,
+              }}
+            >
+              <FaPencilAlt />
+            </Link>
+            <button
+              onClick={() => handleRemove(id)}
+              className={`button--text  ${styles.details__del_icon}`}
+            >
+              <FaTimes />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

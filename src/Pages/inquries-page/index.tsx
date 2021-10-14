@@ -5,7 +5,9 @@ import { StoreType } from '../../store'
 import { fetchInquiries } from '../../store/actions/inquiries'
 import { InquiriesType } from '../../store/reducers/inquiries'
 import { UIContext } from '../../utils/UIProvider'
+import { useInView } from 'react-intersection-observer'
 import './styles.css'
+import { AuthContext } from '../../utils/AuthProvider'
 
 // const inquiries = [
 //   {
@@ -45,6 +47,7 @@ function InquriesPage() {
     state => state.inquiries
   )
 
+
   return (
     <div className='container'>
       <h1 className='container__title'>Inquries</h1>
@@ -53,6 +56,8 @@ function InquriesPage() {
       ) : (
         inquiries.map(inq => (
           <Inquiry
+            seen={inq.seen}
+            handledBy={inq.handledBy}
             key={inq.id}
             fullName={inq.fullName}
             date={inq.date}

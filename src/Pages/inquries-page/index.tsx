@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Inquiry from '../../components/inquiry'
 import { StoreType } from '../../store'
@@ -37,16 +37,9 @@ function InquriesPage() {
   const dispatch = useDispatch()
   const { loading, toggleLoadingState } = useContext(UIContext)
 
-  useEffect(() => {
-    toggleLoadingState(true)
-    dispatch(fetchInquiries)
-    toggleLoadingState(false)
-  }, [dispatch, toggleLoadingState])
-
   const inquiries = useSelector<StoreType, InquiriesType[]>(
     state => state.inquiries
   )
-
 
   return (
     <div className='container'>
@@ -54,18 +47,20 @@ function InquriesPage() {
       {loading ? (
         <div>LOADING...</div>
       ) : (
-        inquiries.map(inq => (
-          <Inquiry
-            seen={inq.seen}
-            handledBy={inq.handledBy}
-            key={inq.id}
-            fullName={inq.fullName}
-            date={inq.date}
-            email={inq.email}
-            service={inq.service}
-            id={inq.id}
-          />
-        ))
+        inquiries.map(inq => {
+          return (
+            <Inquiry
+              seen={inq.seen}
+              handledBy={inq.handledBy}
+              key={inq.id}
+              fullName={inq.fullName}
+              date={inq.date}
+              email={inq.email}
+              service={inq.service}
+              id={inq.id}
+            />
+          )
+        })
       )}
     </div>
   )

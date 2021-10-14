@@ -30,7 +30,6 @@ const reducer = (
   let inquiryIndex: number
   if (action.type === 'seen' || action.type === 'handled') {
     inquiryIndex = state.findIndex(inquiry => {
-      console.log(inquiry.id, action.payload.id)
       return inquiry.id === action.payload.id
     })
   }

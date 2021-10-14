@@ -4,6 +4,7 @@ import styles from './styles.module.css'
 import { useInView } from 'react-intersection-observer'
 import { toggleInquirySeen } from '../../store/actions/inquiries'
 import { useDispatch } from 'react-redux'
+import { UIContext } from '../../utils/UIProvider'
 
 type InquiryProps = {
   id: string
@@ -29,11 +30,12 @@ export const Inquiry = ({
   })
 
   const { user } = useContext(AuthContext)
+  const { decCountInquiries } = useContext(UIContext)
   const dispatch = useDispatch()
 
   if (!seen.includes(user?.displayName!)) {
     if (inView) {
-      dispatch(toggleInquirySeen(id, seen, user?.displayName!))
+      dispatch(toggleInquirySeen(id, seen, user?.displayName!,decCountInquiries))
     }
   }
 

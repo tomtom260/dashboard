@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { handleLogout } from '../../utils/authActions'
 import Sidebar from '../SideBar'
 import styles from './styles.module.css'
 import { FiMenu } from 'react-icons/fi'
+import { UIContext } from '../../utils/UIProvider'
 
 function Navigation() {
   const [visible, setVisible] = useState<boolean>(false)
+  const { countInquiries } = useContext(UIContext)
+
   return (
     <>
       <Sidebar visible={visible} setVisible={setVisible} />
@@ -15,7 +18,7 @@ function Navigation() {
         <div className={styles.navigation__links}>
           <Link to='/'>Home</Link>
           <Link to='/add-service'>Add Service</Link>
-          <Link to='/inquiry'>Inquiry</Link>
+          <Link to='/inquiry'>{`Inquiry(${countInquiries})`}</Link>
         </div>
         <button className='button--text' onClick={handleLogout}>
           Sign out

@@ -2,7 +2,7 @@
   flex-direction: column;
   max-width: 60%;
   margin: 0 auto;
-  padding: 8rem 10rem;
+  padding: 4rem 5rem;
   border-right: 1px solid rgba(121, 113, 113, 0.322);
   border-top: 1px solid rgba(121, 113, 113, 0.322);
   box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
@@ -20,6 +20,7 @@
 .service_form__input textarea {
   height: 15rem;
   margin-left: 2.5rem;
+  resize: none;
 }
 
 .service_form__input textarea,
@@ -36,6 +37,7 @@
 @media screen and (max-width: 1000px) {
   .service_form {
     max-width: 80%;
+    padding: 4rem 5rem;
   }
 }
 
@@ -50,6 +52,17 @@
     width: 100%;
     margin-left: 0;
   }
+}
+
+.service_form__button {
+  background-color: rgb(70, 70, 187);
+  color: white;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  width: 11rem;
+  text-align: center;
+  border: none;
 }
 
 /* @media screen and (max-width: 600) {

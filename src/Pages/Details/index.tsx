@@ -6,7 +6,7 @@ import { removeService } from '../../store/actions/services'
 import { UIContext } from '../../utils/UIProvider'
 import useService from '../../utils/useService'
 import styles from './styles.module.css'
-import { FaPencilAlt, FaTimes } from 'react-icons/fa'
+import { FaPencilAlt, FaTimes, } from 'react-icons/fa'
 
 function Details() {
   const dispatch = useDispatch()

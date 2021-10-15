@@ -9,7 +9,7 @@ html {
   min-height: 100vh !important ;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
-  scroll-padding-top: 14rem;
+  scroll-padding-top: 16rem;
 }
 
 body {
@@ -45,7 +45,7 @@ code {
   position: relative;
   top: 7rem;
   text-align: center;
-  /* width: 80%; */
+  width: 85%;
   margin: auto;
   /* overflow: hidden; */
   height: auto;

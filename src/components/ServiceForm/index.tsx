@@ -79,7 +79,7 @@ function ServiceForm({
           onChange={event => setDescription(event.target.value)}
         />
       </div>
-      <input className='button--primary' type='submit' />
+      <input className={styles.service_form__button} type='submit' />
     </form>
   )
 }

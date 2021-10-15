@@ -1,3 +1,7 @@
 .inquiries__card_not_seen {
   background-color: blue;
 }
+
+.inquiries {
+  scroll-snap-align: start;
+}

@@ -1,9 +1,19 @@
 import React from 'react'
+import { useLocation } from 'react-router'
 import styles from './styles.module.css'
 
 function Footer() {
+  const { pathname } = useLocation()
   return (
-    <div className={styles.footer}>ETM Software {new Date().getFullYear()}</div>
+    <div
+      className={
+        pathname === '/' || pathname === '/inquiry'
+          ? `${styles.footer} ${styles.footer__snap}`
+          : styles.footer
+      }
+    >
+      ETM Software {new Date().getFullYear()}
+    </div>
   )
 }
 

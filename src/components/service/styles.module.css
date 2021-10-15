@@ -5,6 +5,53 @@
   margin-bottom: 10rem;
   scroll-snap-align: start;
   height: 70vh;
+  flex-direction: column;
+  position: relative;
+  border-radius: 5rem;
+}
+
+.service__title {
+  position: relative;
+  top: 8rem;
+}
+
+.service__description {
+  position: relative;
+  top: 6rem;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.service__feat_title {
+  position: relative;
+  top: 10rem;
+}
+
+.service__features {
+  position: relative;
+  top: 12rem;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .service__features {
+    flex-direction: column;
+  }
+
+  .service__key_features {
+    margin: 1.15rem;
+  }
+}
+
+.service__key_features {
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  justify-content: space-between;
 }
 
 .card__button {
@@ -16,4 +63,17 @@
   .card__button {
     align-self: center;
   }
+}
+
+.service__actions {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 7rem;
+}
+
+.service__inview {
+  /* transform: scale(1.2); */
 }

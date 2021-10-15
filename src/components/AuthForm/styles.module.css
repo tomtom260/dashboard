@@ -1,3 +1,20 @@
+.form__container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1050px) {
+  .form__container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form__container {
+    width: 100%;
+  }
+}
+
 .form__input-email {
   position: relative;
   left: 1.6rem;
@@ -68,7 +85,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 5rem;
+  /* top: 3rem; */
 }
 
 .form__item {

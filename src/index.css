@@ -6,7 +6,10 @@
 
 html {
   font-size: 62.5%;
-  min-height: 100vh!;
+  min-height: 100vh !important ;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-padding-top: 14rem;
 }
 
 body {
@@ -42,11 +45,10 @@ code {
   position: relative;
   top: 7rem;
   text-align: center;
-  width: 40%;
+  /* width: 80%; */
   margin: auto;
   /* overflow: hidden; */
   height: auto;
-  
 }
 
 /* ----------------------- Button ------------------------------------ */
@@ -76,7 +78,7 @@ code {
 .card {
   border-right: 1px solid rgba(121, 113, 113, 0.322);
   border-top: 1px solid rgba(121, 113, 113, 0.322);
-  max-width: 60%;
+  /* max-width: 60%; */
   margin: 3rem auto;
   border-radius: 3rem;
   padding: 2rem 6rem;

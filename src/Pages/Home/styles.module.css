@@ -1,0 +1,18 @@
+.services {
+  position: relative;
+  top: 1000rem;
+}
+
+.services::-webkit-scrollbar {
+  display: none;
+}
+
+.services__title {
+  width: 100%;
+  position: fixed;
+  top: 7rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

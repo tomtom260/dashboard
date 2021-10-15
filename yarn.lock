@@ -2692,6 +2692,11 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
+"@types/scrollmagic@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/scrollmagic/-/scrollmagic-2.0.2.tgz#04e5bf57cdbe395545650514400a889deb78bd02"
+  integrity sha512-KdJ25qSLo6fv0O2jMe7hX6Kwsd0T3vRv6uWtdrDTsJsfq0DaO3T7WhXd7eB02TezxzLIRMp5qxV7YdI8A5J++g==
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -10949,6 +10954,11 @@ schema-utils@^3.0.0:
     "@types/json-schema" "^7.0.6"
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
+
+scrollmagic@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/scrollmagic/-/scrollmagic-2.0.8.tgz#e0d7aff804c393c022fdc0c566f1edce3b4e9ed7"
+  integrity sha512-UYXEGBPVLziovXl3FjHGkY9c4UXKUKopIdXwWR2JapWxCo0U345wYegi7rcsv5vHf/ktc1bSNWy4QRFiV+Yccw==
 
 select-hose@^2.0.0:
   version "2.0.0"

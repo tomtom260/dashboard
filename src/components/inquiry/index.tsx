@@ -30,6 +30,7 @@ export const Inquiry = ({
 }: InquiryProps) => {
   const [ref, inView] = useInView({
     threshold: 1,
+    triggerOnce: true,
   })
 
   const { user } = useContext(AuthContext)

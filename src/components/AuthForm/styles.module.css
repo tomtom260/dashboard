@@ -6,3 +6,94 @@
 .form__link {
   margin-top: 2rem;
 }
+
+.button__google {
+  width: 100%;
+  /* height: 3rem; */
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(204, 199, 199);
+  background-color: white;
+  border-radius: 4rem;
+}
+
+.button__google span {
+  margin-right: 2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.button__submit {
+  color: white;
+  background-color: rgb(70, 70, 187);
+  border: 1px solid rgb(204, 199, 199);
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 4rem;
+  position: relative;
+  top: 1.5rem;
+  margin: 1rem 0;
+}
+
+.button__text {
+  color: rgb(70, 70, 187);
+}
+
+.divider {
+  opacity: 0.5;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  height: 4rem;
+  margin-top: 2.5rem;
+}
+
+.divider__text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: white;
+  padding: 0 1rem;
+}
+
+.divider__line {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 5rem;
+}
+
+.form__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1rem 0;
+}
+
+.form__input {
+  border: 1px solid rgb(204, 199, 199);
+  background-color: white;
+  width: 100%;
+  /* height: 3rem; */
+  padding: 1.5rem 3rem;
+  border-radius: 4rem;
+}
+
+.form__label {
+  position: relative;
+  left: 2rem;
+  margin: 1rem;
+}
+
+.form__link {
+  position: relative;
+  top: 1rem;
+}

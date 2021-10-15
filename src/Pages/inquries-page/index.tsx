@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useContext, useState } from 'react'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import Inquiry from '../../components/inquiry'
 import { StoreType } from '../../store'
 import { fetchInquiries } from '../../store/actions/inquiries'
@@ -35,11 +35,15 @@ import { AuthContext } from '../../utils/AuthProvider'
 
 function InquriesPage() {
   const dispatch = useDispatch()
+  // const store = useStore<StoreType>()
   const { loading, toggleLoadingState } = useContext(UIContext)
 
   const inquiries = useSelector<StoreType, InquiriesType[]>(
     state => state.inquiries
   )
+  // const [inquiries, setInquiries] = useState(store.getState().inquiries)
+
+  console.log(inquiries)
 
   return (
     <div className='container'>

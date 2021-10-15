@@ -2,7 +2,10 @@ import { useContext } from 'react'
 import { AuthContext } from '../../utils/AuthProvider'
 import styles from './styles.module.css'
 import { useInView } from 'react-intersection-observer'
-import { toggleInquirySeen } from '../../store/actions/inquiries'
+import {
+  toggleInquirySeen,
+  updateHandledBy,
+} from '../../store/actions/inquiries'
 import { useDispatch } from 'react-redux'
 import { UIContext } from '../../utils/UIProvider'
 
@@ -35,7 +38,9 @@ export const Inquiry = ({
 
   if (!seen.includes(user?.displayName!)) {
     if (inView) {
-      dispatch(toggleInquirySeen(id, seen, user?.displayName!,decCountInquiries))
+      dispatch(
+        toggleInquirySeen(id, seen, user?.displayName!, decCountInquiries)
+      )
     }
   }
 
@@ -49,9 +54,20 @@ export const Inquiry = ({
       }
     >
       <h2>{fullName}</h2>
-      <h3>{email}</h3>
+      {/* <h3>{email}</h3> */}
+      <button
+        onClick={() => {
+          dispatch(updateHandledBy(id, user?.displayName!))
+          window.location.assign(`mailto:${email}`)
+          // window.location.href(`mailto:${email}`)
+          // history.push()
+        }}
+      >
+        Contact {fullName}
+      </button>
       <p>{service}</p>
       <p>{new Date(date).toLocaleString()}</p>
+      <p>handledBy: {handledBy ? handledBy : 'No One'}</p>
     </div>
   )
 }

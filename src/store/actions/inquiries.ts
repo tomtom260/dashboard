@@ -45,12 +45,38 @@ export const toggleInquirySeen =
     })
   }
 
+export const updateHandledBy =
+  (id: string, userFullName: string) => async (dispatch: any) => {
+    await setDoc(
+      doc(db, 'inquiries', id),
+      {
+        handledBy: userFullName,
+      },
+      { merge: true }
+    ).then(() => {
+      updateHandledByRedux({ userFullName, id }, dispatch)
+    })
+  }
+
 const toggleSeenInquiryRedux = (
   { id, userFullName }: { userFullName: string; id: string },
   dispatch: any
 ) => {
   dispatch({
     type: 'seen',
+    payload: {
+      user: userFullName,
+      id: id,
+    },
+  })
+}
+
+const updateHandledByRedux = (
+  { id, userFullName }: { userFullName: string; id: string },
+  dispatch: any
+) => {
+  dispatch({
+    type: 'handled',
     payload: {
       user: userFullName,
       id: id,

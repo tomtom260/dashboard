@@ -17,6 +17,21 @@
   width: 40%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.navigation__button {
+  background-color: rgb(70, 70, 187);
+  color: white;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  width: 11rem;
+  text-align: center;
+}
+
+.navigation__links__loggedout {
+  width: min-content;
 }
 
 .navigation__menu {
@@ -24,14 +39,14 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .navigation button,
   .navigation__links {
     display: none;
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
   .navigation__menu {
     display: none;
   }

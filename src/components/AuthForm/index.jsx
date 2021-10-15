@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
+import { FcGoogle } from 'react-icons/fc'
 
 const reducer = (state, { payload, type }) => {
   switch (type) {
@@ -33,7 +34,6 @@ const inputType = item => {
 
 function AuthForm({ formItems, handleSubmit }) {
   const location = useLocation()
-
   const initialState = {}
   formItems.forEach(item => {
     initialState[item] = ''
@@ -46,22 +46,34 @@ function AuthForm({ formItems, handleSubmit }) {
   return (
     <div className='container'>
       <h1>{path}</h1>
+      <button className={styles.button__google}>
+        <span>{<FcGoogle style={{ fontSize: '3rem' }} />}</span>
+        <span>Sign in with Google</span>
+      </button>
+
+      <div className={styles.divider}>
+        <p className={styles.divider__line}>
+          --------------------------------------------------------------------------------------------
+        </p>
+        <p className={styles.divider__text}>or Sign in with Email</p>
+      </div>
+
       <form
         onSubmit={e => {
           e.preventDefault()
           handleSubmit(state)
         }}
-        className='form'
+        className={styles.form}
       >
         <>
           {formItems.map(item => {
             return (
-              <div className='form__input' key={item}>
-                <label htmlFor={`form-${item}`}>
+              <div className={styles.form__item} key={item}>
+                <label className={styles.form__label} htmlFor={`form-${item}`}>
                   {item.slice(0, 1).toUpperCase() + item.slice(1)}
                 </label>
                 <input
-                  className={styles[`form__input-${item}`]}
+                  className={styles[`form__input`]}
                   type={inputType(item)}
                   id={`form-${item}`}
                   placeholder={item.slice(0, 1).toUpperCase() + item.slice(1)}
@@ -72,12 +84,24 @@ function AuthForm({ formItems, handleSubmit }) {
               </div>
             )
           })}
-          <input type='submit' className='button--primary' value={path} />
+          <input className={styles.button__submit} type='submit' value={path} />
         </>
         <div className={styles.form__link}>
-          <Link to={path === 'Sign In' ? 'signup' : 'signin'}>
-            {path === 'Sign In' ? 'Sign Up' : 'Sign In'}
-          </Link>
+          {path === 'Sign In' ? (
+            <>
+              Not registered yet?{' '}
+              <Link className={styles.button__text} to='signup'>
+                Create an Account
+              </Link>
+            </>
+          ) : (
+            <>
+              Have an Account?{' '}
+              <Link className={styles.button__text} to='signin'>
+                Sign in into Account
+              </Link>
+            </>
+          )}
         </div>
       </form>
     </div>

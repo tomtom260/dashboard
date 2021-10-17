@@ -140,7 +140,10 @@ function Navigation() {
                 </>
               </Link>
               <IconButton onClick={handleClick}>
-                <Avatar sx={{ bgcolor: 'rgb(70, 70, 187)' }}>
+                <Avatar
+                  src={user.photoURL!}
+                  sx={{ bgcolor: 'rgb(70, 70, 187)' }}
+                >
                   {nameInitials(user?.displayName!)}
                 </Avatar>
               </IconButton>

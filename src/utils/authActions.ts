@@ -4,7 +4,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth'
+
 import { History } from 'history'
 
 export const handleLogout = () => {
@@ -78,6 +81,28 @@ export const handleSignUp = async (
     })
     .finally(() => {
       toggleLoadingState(false)
+    })
+}
+
+export const signInWithGoogle = () => {
+  const provider = new GoogleAuthProvider()
+  const auth = getAuth()
+  signInWithPopup(auth, provider)
+    .then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      // The signed-in user info.
+      const user = result.user
+      // ...
+    })
+    .catch(error => {
+      // Handle Errors here.
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log(error.code)
+      // The email of the user's account used.
+      // The AuthCredential type that was used.
+      // ...
     })
 }
 

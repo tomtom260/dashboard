@@ -9,7 +9,7 @@ const store = createStore(
     inquiries: inquiriesReducer,
     services: servicesReducer,
   }),
-  compose(applyMiddleware(thunk) as any, composeWithDevTools())
+  composeWithDevTools(applyMiddleware(thunk))
 )
 
 export type StoreType = {

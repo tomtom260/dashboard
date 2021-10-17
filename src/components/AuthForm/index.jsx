@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 import { FcGoogle } from 'react-icons/fc'
 import { AuthContext } from '../../utils/AuthProvider'
+import { signInWithGoogle } from '../../utils/authActions'
 
 const reducer = (state, { payload, type }) => {
   switch (type) {
@@ -50,7 +51,12 @@ function AuthForm({ formItems, handleSubmit }) {
     <div className='container'>
       <div className={styles.form__container}>
         <h1>{path}</h1>
-        <button className={styles.button__google}>
+        <button
+          onClick={() => {
+            signInWithGoogle()
+          }}
+          className={styles.button__google}
+        >
           <span>{<FcGoogle style={{ fontSize: '3rem' }} />}</span>
           <span style={{ fontFamily: 'Noto Sans Display, sans-serif' }}>
             Sign in with Google

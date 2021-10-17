@@ -8,13 +8,13 @@ import AuthProvider from './utils/AuthProvider'
 
 function App() {
   return (
-    <Provider store={store}>
+    <UIProvider>
       <AuthProvider>
-        <UIProvider>
+        <Provider store={store}>
           <Router />
-        </UIProvider>
+        </Provider>
       </AuthProvider>
-    </Provider>
+    </UIProvider>
   )
 }
 

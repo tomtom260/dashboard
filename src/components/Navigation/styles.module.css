@@ -10,6 +10,7 @@
   align-items: center;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
   z-index: 20;
+  /* background-color: #2f5bfb; */
   background-color: white;
 }
 
@@ -37,6 +38,9 @@
 .navigation__menu {
   font-size: 2.3rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
 }
 
 @media screen and (max-width: 800px) {

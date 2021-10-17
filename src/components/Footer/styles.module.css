@@ -1,6 +1,7 @@
 .footer {
   position: relative;
   top: 25rem;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;

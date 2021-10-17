@@ -5,22 +5,20 @@ import { ServiceType } from '../store/reducers/services'
 
 function useService(id: string, toggleLoadingState: (value: boolean) => void) {
   const dispatch = useDispatch()
-
-  return useSelector<StoreType, ServiceType>(state => {
-    // check from redux
+  let service = useSelector<StoreType, ServiceType | undefined>(state => {
     let serv = state.services.find(service => service.id === id)
-    if (!serv) {
-      toggleLoadingState(true)
-      // check from firestore
-      fetchService({ id }).then(val => {
-        serv = val as ServiceType
-        serv && addServiceToRedux(dispatch, serv)
-        toggleLoadingState(false)
-      })
-    }
-
-    return { ...serv!, id }
+    return serv
   })
+  if (!service) {
+    toggleLoadingState(true)
+    fetchService({ id }).then(val => {
+      service = { ...(val as ServiceType), id }
+      val && addServiceToRedux(dispatch, service)
+      toggleLoadingState(false)
+    })
+  }
+
+  return service
 }
 
 export default useService

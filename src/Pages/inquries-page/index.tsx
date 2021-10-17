@@ -1,37 +1,12 @@
-import { useContext, useState } from 'react'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Inquiry from '../../components/inquiry'
 import { StoreType } from '../../store'
-import { fetchInquiries } from '../../store/actions/inquiries'
 import { InquiriesType } from '../../store/reducers/inquiries'
 import { UIContext } from '../../utils/UIProvider'
-import { useInView } from 'react-intersection-observer'
-import './styles.css'
-import { AuthContext } from '../../utils/AuthProvider'
-
-// const inquiries = [
-//   {
-//     fullName: 'Thomas Mesfin',
-//     email: 'thomasmesfin260@gmail.com',
-//     service: 'Employee Managment System',
-//     date: 0,
-//     id: 1,
-//   },
-//   {
-//     fullName: 'Thomas Mesfin',
-//     email: 'thomasmesfin260@gmail.com',
-//     service: 'Employee Managment System',
-//     date: 0,
-//     id: 2,
-//   },
-//   {
-//     fullName: 'Thomas Mesfin',
-//     email: 'thomasmesfin260@gmail.com',
-//     service: 'Employee Managment System',
-//     date: 0,
-//     id: 3,
-//   },
-// ]
+import styles from './styles.module.css'
+import NewReleasesIcon from '@mui/icons-material/NewReleases'
+import Loading from '../../components/Loading'
 
 function InquriesPage() {
   const dispatch = useDispatch()
@@ -41,17 +16,16 @@ function InquriesPage() {
   const inquiries = useSelector<StoreType, InquiriesType[]>(
     state => state.inquiries
   )
-  // const [inquiries, setInquiries] = useState(store.getState().inquiries)
 
-  console.log(inquiries)
-
-  return (
-    <div className='container'>
-      <h1 className='container__title'>Inquries</h1>
-      {loading ? (
-        <div>LOADING...</div>
-      ) : (
-        inquiries.map(inq => {
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <div className={styles.inquiries__title}>
+        <h1>Inquries</h1>
+      </div>
+      <div className={`container ${styles.inquiries}`}>
+        {inquiries.map(inq => {
           return (
             <Inquiry
               seen={inq.seen}
@@ -64,9 +38,9 @@ function InquriesPage() {
               id={inq.id}
             />
           )
-        })
-      )}
-    </div>
+        })}
+      </div>
+    </>
   )
 }
 

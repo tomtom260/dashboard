@@ -6,6 +6,7 @@ type UIContextType = {
   countInquiries: number
   incCountInquiries: () => void
   decCountInquiries: () => void
+
 }
 type UIProvideProps = {
   children: ReactNode

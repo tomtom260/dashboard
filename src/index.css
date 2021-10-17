@@ -10,6 +10,7 @@ html {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   scroll-padding-top: 16rem;
+  background-color: #ede9e9;
 }
 
 body {
@@ -22,6 +23,13 @@ body {
   }
 }
 
+h1,
+h2 {
+  font-family: 'Oswald', sans-serif;
+  /* letter-spacing: 2px; */
+  font-weight: 100;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,6 +37,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Noto Sans Display', sans-serif;
 }
 
 a {
@@ -49,6 +58,9 @@ code {
   margin: auto;
   /* overflow: hidden; */
   height: auto;
+}
+
+.container__title {
 }
 
 /* ----------------------- Button ------------------------------------ */
@@ -78,13 +90,13 @@ code {
 .card {
   border-right: 1px solid rgba(121, 113, 113, 0.322);
   border-top: 1px solid rgba(121, 113, 113, 0.322);
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
   /* max-width: 60%; */
   margin: 3rem auto;
   border-radius: 3rem;
   padding: 2rem 6rem;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card__title {

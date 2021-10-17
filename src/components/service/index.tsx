@@ -36,13 +36,21 @@ function Service({
             pathname: `/edit/${id}`,
           }}
         >
-          <FaPencilAlt />
+          <FaPencilAlt
+            color='
+    #4646BB
+          '
+          />
         </Link>
         <button
           onClick={() => handleRemove(id)}
           className={`button--text  ${styles.details__del_icon}`}
         >
-          <FaTrash />
+          <FaTrash
+            color='
+    #4646BB
+          '
+          />
         </button>
       </div>
       <h1 className={styles.service__title}>{title}</h1>

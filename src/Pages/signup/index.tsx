@@ -1,8 +1,11 @@
 import AuthForm from '../../components/AuthForm'
 import { handleSignUp } from '../../utils/authActions'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { useContext } from 'react'
 import { UIContext } from '../../utils/UIProvider'
+import { useLocation } from 'react-router-dom'
+import Loading from '../../components/Loading'
+import { AuthContext } from '../../utils/AuthProvider'
 
 type StateType = {
   name: string
@@ -14,23 +17,36 @@ type StateType = {
 function SignUp() {
   const history = useHistory()
   const { toggleLoadingState, loading } = useContext(UIContext)
-  const handleSubmit = async (state: StateType) => {
+  const { setError } = useContext(AuthContext)
+
+  const location = useLocation<{
+    from?: string
+  }>()
+
+  const from = location?.state?.from
+
+  const handleSubmit = async (
+    state: StateType,
+    setError: (error: string | undefined) => void
+  ) => {
     if (state.password !== state.passwordConfirm) {
-      console.log("passwords don't match")
+      setError("passwords don't match")
       return
     }
 
-    await handleSignUp(
+    handleSignUp(
       state.email,
       state.password,
       state.name,
       toggleLoadingState,
-      history
+      history,
+      from,
+      setError
     )
   }
 
   return loading ? (
-    <div className='container'>LOADING...</div>
+    <Loading />
   ) : (
     <AuthForm
       formItems={['name', 'email', 'password', 'passwordConfirm']}

@@ -2,16 +2,15 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 const firebaseConfig = {
-  apiKey: 'AIzaSyDXNkjthwcDNQM9GaKtsgAmDb_8erw_HBY',
-  authDomain: 'ecomm-29f20.firebaseapp.com',
-  projectId: 'ecomm-29f20',
-  storageBucket: 'ecomm-29f20.appspot.com',
-  messagingSenderId: '8817596019',
-  appId: '1:8817596019:web:9463a7d08bb561f5bdfc06',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 }
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
 const db = getFirestore()
 
 export default db

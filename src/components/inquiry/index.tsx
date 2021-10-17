@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { AuthContext } from '../../utils/AuthProvider'
 import styles from './styles.module.css'
 import { useInView } from 'react-intersection-observer'
@@ -8,6 +8,7 @@ import {
 } from '../../store/actions/inquiries'
 import { useDispatch } from 'react-redux'
 import { UIContext } from '../../utils/UIProvider'
+import NewReleasesIcon from '@mui/icons-material/NewReleases'
 
 type InquiryProps = {
   id: string
@@ -45,30 +46,51 @@ export const Inquiry = ({
     }
   }
 
+  const inqSeen = useRef(seen.includes(user?.displayName!))
+
   return (
     <div
       ref={ref}
       className={
-        !seen.includes(user?.displayName!)
-          ? `${styles.inquiries__card_not_seen} card`
-          : 'card'
+        !inqSeen.current
+          ? `${styles.inquiry} ${styles.inquiry__not_seen}`
+          : styles.inquiry
       }
     >
-      <h2>{fullName}</h2>
-      {/* <h3>{email}</h3> */}
-      <button
-        onClick={() => {
-          dispatch(updateHandledBy(id, user?.displayName!))
-          window.location.assign(`mailto:${email}`)
-          // window.location.href(`mailto:${email}`)
-          // history.push()
-        }}
-      >
-        Contact {fullName}
-      </button>
-      <p>{service}</p>
-      <p>{new Date(date).toLocaleString()}</p>
-      <p>handledBy: {handledBy ? handledBy : 'No One'}</p>
+      {!inqSeen.current && (
+        <NewReleasesIcon
+          style={{
+            fontSize: '3rem',
+            color: 'rgb(70, 70, 187)',
+            alignSelf: 'flex-end',
+          }}
+        />
+      )}
+      <h2>{service}</h2>
+      <div className={styles.flexbox}>
+        <p>Date inquired: {new Date(date).toLocaleDateString()}</p>
+        <p>
+          handled by:{' '}
+          <span
+            className={
+              handledBy ? styles.handledBy__green : styles.handledBy__red
+            }
+          >
+            {handledBy ? handledBy : 'No One'}
+          </span>
+        </p>
+      </div>
+      {!handledBy ? (
+        <button
+          className={styles.inquiry__contact}
+          onClick={() => {
+            dispatch(updateHandledBy(id, user?.displayName!))
+            window.location.assign(`mailto:${email}`)
+          }}
+        >
+          Contact {fullName}
+        </button>
+      ) : null}
     </div>
   )
 }

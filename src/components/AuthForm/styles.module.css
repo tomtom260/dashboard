@@ -45,7 +45,7 @@
 .button__submit {
   color: white;
   background-color: rgb(70, 70, 187);
-  border: 1px solid rgb(204, 199, 199);
+  border: none;
   width: 100%;
   padding: 1.5rem;
   border-radius: 4rem;
@@ -79,6 +79,10 @@
 .divider__line {
   position: absolute;
   white-space: nowrap;
+}
+
+.error {
+  color: rgb(223, 64, 64);
 }
 
 .form {

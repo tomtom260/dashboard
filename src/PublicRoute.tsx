@@ -1,7 +1,6 @@
-import { User } from '@firebase/auth'
 import { useContext, ComponentType } from 'react'
 import { Redirect, Route } from 'react-router'
-import { AuthContext } from './utils/AuthProvider'
+import { AuthContext, AuthContextType } from './utils/AuthProvider'
 
 type PublicRouteProps = {
   component: ComponentType
@@ -10,13 +9,13 @@ type PublicRouteProps = {
 }
 
 function PublicRoute({ component: Component, ...rest }: PublicRouteProps) {
-  const { user } = useContext<{ user: User | undefined }>(AuthContext)
-
+  const { user, from } = useContext<AuthContextType>(AuthContext)
+  console.log(from)
   return (
     <Route
       {...rest}
       component={(props: any) => {
-        return !user ? <Component {...props} /> : <Redirect to='/' />
+        return !user ? <Component {...props} /> : <Redirect to={from} />
       }}
     />
   )

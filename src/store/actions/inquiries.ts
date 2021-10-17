@@ -4,8 +4,14 @@ import db from '../../firebase'
 import { InquiriesType } from '../reducers/inquiries'
 
 export const fetchInquiries =
-  (user: User, incCountInquiries: () => void) => async (dispatch: any) => {
+  (
+    user: User,
+    incCountInquiries: () => void,
+    toggleLoadingState: (value: boolean) => void
+  ) =>
+  async (dispatch: any) => {
     const inquiries: InquiriesType[] = []
+    toggleLoadingState(true)
     const q = query(collection(db, 'inquiries'))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc: any) => {
@@ -16,12 +22,12 @@ export const fetchInquiries =
         ...data,
       } as InquiriesType)
     })
-
     inquiries.sort((inq1, inq2) => inq2.date - inq1.date)
     dispatch({
       type: 'init-inquiries',
       payload: inquiries,
     })
+    toggleLoadingState(false)
   }
 
 export const toggleInquirySeen =

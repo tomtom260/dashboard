@@ -6,9 +6,9 @@ import { removeService } from '../../store/actions/services'
 import { UIContext } from '../../utils/UIProvider'
 import useService from '../../utils/useService'
 import styles from './styles.module.css'
-import { FaPencilAlt, FaTimes, } from 'react-icons/fa'
+import { FaPencilAlt, FaTimes } from 'react-icons/fa'
 
-function Details() {
+async function Details() {
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -20,9 +20,9 @@ function Details() {
   const { id: slug_id } = useParams<{ id: string }>()
   const { toggleLoadingState, loading } = useContext(UIContext)
 
-  const serviceDetails = useService(slug_id, toggleLoadingState)
+  const serviceDetails = await useService(slug_id, toggleLoadingState)
 
-  if (!serviceDetails.title) {
+  if (!serviceDetails?.title) {
     return (
       <div className='container'>
         <h1>No Service with this id {slug_id} exists</h1>

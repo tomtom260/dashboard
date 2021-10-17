@@ -58,15 +58,9 @@
   background-color: rgb(70, 70, 187);
   color: white;
   border-radius: 2rem;
-  padding: 1rem 2rem;
-  margin: 1rem;
-  width: 11rem;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  width: 100%;
   text-align: center;
   border: none;
 }
-
-/* @media screen and (max-width: 600) {
-  .service_form {
-    max-width: 100%;
-  }
-} */

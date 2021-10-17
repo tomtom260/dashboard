@@ -1,7 +1,93 @@
-.inquiries__card_not_seen {
-  background-color: blue;
+.inquiry__not_seen {
+  /* box-shadow: -10px 10px 20px rgba(70, 70, 187, 0.8) !important;
+  border: 2px solid rgb(70, 70, 187) !important; */
+  /* transition: all ease-out 2s 2s; */
+  animation-name: fade;
+  animation-duration: 4s;
 }
 
-.inquiries {
+@keyframes fade {
+  0% {
+    box-shadow: -10px 10px 20px rgba(70, 70, 187, 0.8) !important;
+    border: 2px solid rgb(70, 70, 187) !important;
+  }
+
+  50% {
+    box-shadow: -10px 10px 20px rgba(70, 70, 187, 0.8) !important;
+    border: 2px solid rgb(70, 70, 187) !important;
+  }
+
+  100% {
+    box-shadow: -10px 10px 20px rgba(0, 0, 0 0.2) !important;
+    border: 2px solid rgba(121, 113, 113, 0.322) !important;
+  }
+}
+
+.inquiry {
+  /* transition: all 2s ease-out 2s; */
+  transition: transform 1s;
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  border-radius: 3rem;
+  border-right: 1px solid rgba(121, 113, 113, 0.322);
+  border-top: 1px solid rgba(121, 113, 113, 0.322);
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+  border: none;
+  width: 80%;
+  margin: 10rem auto;
+  -webkit-transition: border 1s linear;
+  -moz-transition: border 1s linear;
+  -o-transition: border 1s linear;
+  transition: border 1s linear;
+  background-color: #f5f5f5;
+}
+
+.inquiry__contact {
+  color: white;
+  background-color: rgb(70, 70, 187);
+  border: none;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 4rem;
+  position: relative;
+  top: 1.5rem;
+  margin: 1rem auto;
+}
+
+.flexbox {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 750px) {
+  .inquiry {
+    width: 100%;
+  }
+
+  .flexbox {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .inquiry {
+    width: 60%;
+  }
+
+  .flexbox {
+    flex-direction: column;
+  }
+}
+
+.handledBy__red {
+  color: rgb(223, 64, 64);
+}
+
+.handledBy__green {
+  color: rgb(68, 206, 68);
 }

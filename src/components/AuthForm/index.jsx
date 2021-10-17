@@ -1,8 +1,9 @@
-import { useReducer } from 'react'
+import { useContext, useReducer, useState } from 'react'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 import { FcGoogle } from 'react-icons/fc'
+import { AuthContext } from '../../utils/AuthProvider'
 
 const reducer = (state, { payload, type }) => {
   switch (type) {
@@ -39,7 +40,9 @@ function AuthForm({ formItems, handleSubmit }) {
     initialState[item] = ''
   })
 
+  const { error, setError } = useContext(AuthContext)
   const [state, dispatch] = useReducer(reducer, initialState)
+
   let path
   location.pathname.includes('signin') ? (path = 'Sign In') : (path = 'Sign Up')
 
@@ -49,7 +52,9 @@ function AuthForm({ formItems, handleSubmit }) {
         <h1>{path}</h1>
         <button className={styles.button__google}>
           <span>{<FcGoogle style={{ fontSize: '3rem' }} />}</span>
-          <span>Sign in with Google</span>
+          <span style={{ fontFamily: 'Noto Sans Display, sans-serif' }}>
+            Sign in with Google
+          </span>
         </button>
 
         <div className={styles.divider}>
@@ -59,10 +64,14 @@ function AuthForm({ formItems, handleSubmit }) {
           <p className={styles.divider__text}>or Sign in with Email</p>
         </div>
 
+        <div className={styles.error}>
+          <p>{error}</p>
+        </div>
+
         <form
           onSubmit={e => {
             e.preventDefault()
-            handleSubmit(state)
+            handleSubmit(state, setError)
           }}
           className={styles.form}
         >

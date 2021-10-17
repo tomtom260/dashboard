@@ -1,0 +1,16 @@
+.inquiries__title {
+  width: 100%;
+  height: 7rem;
+  position: fixed;
+  top: 7rem;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ede9e9;
+}
+
+.inquiries {
+  position: relative;
+  top: 16rem;
+}

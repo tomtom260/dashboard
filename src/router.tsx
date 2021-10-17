@@ -19,15 +19,14 @@ import { fetchInquiries } from './store/actions/inquiries'
 import { AuthContext } from './utils/AuthProvider'
 
 function Router() {
-  const { toggleLoadingState, incCountInquiries } = useContext(UIContext)
+  const { toggleLoadingState, incCountInquiries, loading } =
+    useContext(UIContext)
   const { user } = useContext(AuthContext)
 
   const dispatch = useDispatch()
   useEffect(() => {
     if (user) {
-      toggleLoadingState(true)
-      dispatch(fetchInquiries(user!, incCountInquiries))
-      toggleLoadingState(false)
+      dispatch(fetchInquiries(user!, incCountInquiries, toggleLoadingState))
     }
   }, [user])
 
@@ -37,14 +36,14 @@ function Router() {
       <Switch>
         <PrivateRoute path='/add-service' component={AddService} />
         <PrivateRoute path='/' exact component={Home} />
-        <PrivateRoute path='/details/:id' exact component={Details} />
+        {/* <PrivateRoute path='/details/:id' exact component={Details} /> */}
         <PrivateRoute path='/edit/:id' exact component={EditService} />
         <PrivateRoute path='/inquiry' exact component={InquriesPage} />
         <PublicRoute path='/signup' exact component={SignUp} />
         <PublicRoute path='/signin' exact component={SignIn} />
         <Route component={NotFoundPage} />
       </Switch>
-      <Footer />
+      {!loading && <Footer />}
     </BrowserRouter>
   )
 }

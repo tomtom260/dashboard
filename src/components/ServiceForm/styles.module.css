@@ -7,10 +7,14 @@
   border-top: 1px solid rgba(121, 113, 113, 0.322);
   box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
   border-radius: 5rem;
+  text-align: initial;
 }
 
 .service_form__input {
   margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .service_form__input input {
@@ -32,6 +36,7 @@
   outline: 1px solid rgba(121, 113, 113, 0.5);
   margin-left: 2.5rem;
   margin-top: 1rem;
+  flex-grow: 1;
 }
 
 @media screen and (max-width: 1000px) {
@@ -45,6 +50,11 @@
   .service_form {
     max-width: 100%;
     padding: 3rem 3rem;
+  }
+
+  .service_form__input {
+    flex-direction: column;
+    align-items: center;
   }
 
   .service_form__input textarea,
@@ -63,4 +73,68 @@
   width: 100%;
   text-align: center;
   border: none;
+}
+
+.service_form__features {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 750px) {
+  .service_form__features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service_form__features input {
+    margin-left: 0 !important;
+  }
+}
+
+.service__form__fab {
+  width: 11rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.service_form__features label {
+}
+
+.service_form__features button {
+  margin-left: 1.5rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.service_form__features input {
+  align-self: center;
+  width: 50%;
+  flex-grow: 1;
+  margin-left: 5rem;
+}
+
+.service_form__features__list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  /* align-items: center; */
+}
+
+.service_form__feature {
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+  flex-grow: 1;
+  margin-top: 1rem;
+}
+
+.service_form__add_feature {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.service_form__add_feature button {
+  margin-left: 0;
 }

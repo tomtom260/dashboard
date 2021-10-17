@@ -16,6 +16,7 @@ export type ServiceType = {
   createdAt: number
   lastModifiedAt?: number
   lastModifiedBy?: string
+  features: string[]
 }
 
 // const initialState = fetchServices()

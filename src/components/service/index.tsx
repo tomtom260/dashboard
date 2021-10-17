@@ -10,7 +10,8 @@ function Service({
   id,
   description,
   title,
-}: Pick<ServiceType, 'title' | 'description' | 'id'>) {
+  features = [],
+}: Pick<ServiceType, 'title' | 'description' | 'id' | 'features'>) {
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -22,6 +23,7 @@ function Service({
   const { ref, inView } = useInView({
     threshold: 1,
   })
+
 
   return (
     <div
@@ -55,19 +57,21 @@ function Service({
       </div>
       <h1 className={styles.service__title}>{title}</h1>
       <p className={styles.service__description}>{description}</p>
-      <h3 className={styles.service__feat_title}>Key Features</h3>
+      {features.length === 0 ? null : (
+        <h3 className={styles.service__feat_title}>Key Features</h3>
+      )}
       <div className={styles.service__features}>
         <div
           className={`${styles.service__key_features} ${styles.service__features_left}`}
         >
-          <div>Time Managment</div>
-          <div>Time Managment</div>
+          <div>{features[0]}</div>
+          <div>{features[2]}</div>
         </div>
         <div
           className={`${styles.service__key_features} ${styles.service__features_right}`}
         >
-          <div>Time Managment</div>
-          <div>Time Managment</div>
+          <div>{features[1]}</div>
+          <div>{features[3]}</div>
         </div>
       </div>
     </div>

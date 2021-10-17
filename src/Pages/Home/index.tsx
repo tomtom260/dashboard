@@ -24,6 +24,7 @@ function Home() {
             title={service.title}
             id={service.id}
             description={service.description}
+            features={service.features}
           />
         ))}
       </div>

@@ -17,11 +17,18 @@
   border-top: 1px solid rgba(121, 113, 113, 0.322);
   box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
   background-color: #f5f5f5;
+  padding: 0 2rem;
 }
 
 @media screen and (min-width: 600px) {
   .service {
     padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .service {
+    height: 90vh;
   }
 }
 
@@ -45,7 +52,7 @@
 
 .service__features {
   position: relative;
-  top: 12rem;
+  top: 10rem;
   width: 60%;
   margin: 0 auto;
   display: flex;
@@ -67,6 +74,10 @@
   flex-direction: column;
   height: 6rem;
   justify-content: space-between;
+}
+
+.service__key_features div {
+  margin: 0.3rem;
 }
 
 .card__button {

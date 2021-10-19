@@ -19,12 +19,18 @@ export const addServiceToRedux = (dispatch: any, payload: ServiceType) => {
 }
 
 export const addService =
-  (payload: Omit<ServiceType, 'id'>) => async (dispatch: any) => {
+  (
+    payload: Omit<ServiceType, 'id'>,
+    toggleLoadingState: (value: boolean) => void
+  ) =>
+  async (dispatch: any) => {
+    toggleLoadingState(true)
     const newDoc = await addDoc(collection(db, 'services'), payload)
     addServiceToRedux(dispatch, {
       ...payload,
       id: newDoc.id,
     })
+    toggleLoadingState(false)
   }
 
 export const editService =
@@ -32,9 +38,11 @@ export const editService =
     payload: Partial<ServiceType> & {
       lastModifiedBy: string
       lastModifiedAt: number
-    }
+    },
+    toggleLoadingState: (value: boolean) => void
   ) =>
   async (dispatch: any) => {
+    toggleLoadingState(true)
     const { id } = payload
     delete payload['id']
     await setDoc(doc(db, 'services', id!), payload, {
@@ -45,6 +53,7 @@ export const editService =
       ...payload,
       id: id!,
     } as ServiceType)
+    toggleLoadingState(false)
   }
 
 export const fetchServices = async (dispatch: any) => {

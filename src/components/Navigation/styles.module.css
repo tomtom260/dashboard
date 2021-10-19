@@ -55,3 +55,9 @@
     display: none;
   }
 }
+
+.active__link {
+  font-weight: '700 !important';
+  /* color: '#4646bb'; */
+  font-size: '1.8rem !important';
+}

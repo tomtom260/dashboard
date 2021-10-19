@@ -13,21 +13,22 @@ export const fetchInquiries =
     const inquiries: InquiriesType[] = []
     toggleLoadingState(true)
     const q = query(collection(db, 'inquiries'))
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc: any) => {
-      const data = doc.data()
-      if (user) if (!data.seen.includes(user.displayName)) incCountInquiries()
-      inquiries.push({
-        id: doc.id,
-        ...data,
-      } as InquiriesType)
+    getDocs(q).then(querySnapshot => {
+      querySnapshot.forEach((doc: any) => {
+        const data = doc.data()
+        if (user) if (!data.seen.includes(user.displayName)) incCountInquiries()
+        inquiries.push({
+          id: doc.id,
+          ...data,
+        } as InquiriesType)
+      })
+      inquiries.sort((inq1, inq2) => inq2.date - inq1.date)
+      dispatch({
+        type: 'init-inquiries',
+        payload: inquiries,
+      })
+      toggleLoadingState(false)
     })
-    inquiries.sort((inq1, inq2) => inq2.date - inq1.date)
-    dispatch({
-      type: 'init-inquiries',
-      payload: inquiries,
-    })
-    toggleLoadingState(false)
   }
 
 export const toggleInquirySeen =
@@ -38,16 +39,15 @@ export const toggleInquirySeen =
     decCountInquiries: () => void
   ) =>
   async (dispatch: any) => {
-    decCountInquiries()
-    seen.push(userFullName)
-    await setDoc(
+    toggleSeenInquiryRedux({ userFullName, id }, dispatch)
+    setDoc(
       doc(db, 'inquiries', id),
       {
-        seen,
+        seen: [...seen],
       },
       { merge: true }
     ).then(() => {
-      toggleSeenInquiryRedux({ userFullName, id }, dispatch)
+      decCountInquiries()
     })
   }
 

@@ -21,6 +21,7 @@ export type InquiriesType = {
   seen: string[]
   handledBy: string
   fullName: string
+  message: string
 }
 
 const reducer = (
@@ -41,7 +42,7 @@ const reducer = (
       return state
     case 'handled':
       state[inquiryIndex!].handledBy = action.payload.user!
-      return state
+      return [...state]
     default:
       return state
   }

@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, memo } from 'react'
 import { AuthContext } from '../../utils/AuthProvider'
 import styles from './styles.module.css'
 import { useInView } from 'react-intersection-observer'
@@ -9,6 +9,8 @@ import {
 import { useDispatch } from 'react-redux'
 import { UIContext } from '../../utils/UIProvider'
 import NewReleasesIcon from '@mui/icons-material/NewReleases'
+import { CSSTransition } from 'react-transition-group'
+import { motion } from 'framer-motion'
 
 type InquiryProps = {
   id: string
@@ -18,6 +20,7 @@ type InquiryProps = {
   date: number
   handledBy: string
   seen: string[]
+  message: string
 }
 
 export const Inquiry = ({
@@ -28,6 +31,7 @@ export const Inquiry = ({
   seen,
   id,
   handledBy,
+  message,
 }: InquiryProps) => {
   const [ref, inView] = useInView({
     threshold: 1,
@@ -37,7 +41,7 @@ export const Inquiry = ({
   const { user } = useContext(AuthContext)
   const { decCountInquiries } = useContext(UIContext)
   const dispatch = useDispatch()
-
+  //
   if (!seen.includes(user?.displayName!)) {
     if (inView) {
       dispatch(
@@ -46,18 +50,35 @@ export const Inquiry = ({
     }
   }
 
-  const inqSeen = useRef(seen.includes(user?.displayName!))
+  const inqSeen = useRef<boolean[]>([])
+  inqSeen.current.push(seen.includes(user?.displayName!))
+
+  const inquiryVariants = {
+    initial: !inqSeen.current[0]
+      ? {
+          boxShadow: '-10px 10px 20px rgba(70, 70, 187, 0.8)',
+          border: '2px solid rgb(70, 70, 187)',
+        }
+      : {
+          boxShadow: '-10px 10px 20px rgba(0, 0, 0, 0.2)',
+          border: '2px solid #f5f5f5',
+        },
+    animate: {
+      transition: { delay: 2, duration: 2 },
+      boxShadow: '-10px 10px 20px rgba(0, 0, 0, 0.2)',
+      border: '2px solid #f5f5f5',
+    },
+  }
 
   return (
-    <div
+    <motion.div
+      variants={inquiryVariants}
+      initial='initial'
+      animate={inView ? 'initial' : 'animate'}
       ref={ref}
-      className={
-        !inqSeen.current
-          ? `${styles.inquiry} ${styles.inquiry__not_seen}`
-          : styles.inquiry
-      }
+      className={styles.inquiry}
     >
-      {!inqSeen.current && (
+      {!inqSeen.current[0] && (
         <NewReleasesIcon
           style={{
             fontSize: '3rem',
@@ -68,8 +89,9 @@ export const Inquiry = ({
       )}
       <h2>{service}</h2>
       <div className={styles.flexbox}>
+        <p>{message}</p>
         <p>Date inquired: {new Date(date).toLocaleDateString()}</p>
-        <p>
+        <p className={styles.handledBy}>
           handled by:{' '}
           <span
             className={
@@ -91,8 +113,8 @@ export const Inquiry = ({
           Contact {fullName}
         </button>
       ) : null}
-    </div>
+    </motion.div>
   )
 }
 
-export default Inquiry
+export default memo(Inquiry)

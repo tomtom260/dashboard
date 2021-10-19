@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { handleLogout } from '../../utils/authActions'
 import styles from './styles.module.css'
 import { UIContext } from '../../utils/UIProvider'
@@ -59,8 +59,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     '&:hover': {
       backgroundColor: 'white !important',
-      // fontSize: '1.8rem !important',
-      color: 'blue !important',
+      fontSize: '1.7rem !important',
+      // color: 'blue !important',
       transition: 'font-size 0.1s',
     },
   },
@@ -93,7 +93,6 @@ function Navigation() {
 
   return (
     <>
-      {/* <Sidebar visible={visible} setVisible={setVisible} /> */}
       <nav className={styles.navigation}>
         <h1
           className={
@@ -113,21 +112,47 @@ function Navigation() {
         >
           {!user ? (
             <>
-              {/* <Box justifyContent='space-between'> */}
-              <Link className={styles.navigation__button} to='/signin'>
+              <NavLink className={styles.navigation__button} to='/signin'>
                 Sign In
-              </Link>
-              <Link className={styles.navigation__button} to='/signup'>
+              </NavLink>
+              <NavLink className={styles.navigation__button} to='/signup'>
                 Sign Up
-              </Link>
-
-              {/* </Box> */}
+              </NavLink>
             </>
           ) : (
             <>
-              <Link to='/'>Home</Link>
-              <Link to='/add-service'>Add Service</Link>
-              <Link to='/inquiry'>
+              <NavLink
+                exact
+                activeClassName={styles.active__link}
+                activeStyle={{
+                  fontWeight: 'bold',
+                  color: '#4646bb',
+                  fontSize: '1.8rem !important',
+                }}
+                to='/'
+              >
+                Services
+              </NavLink>
+              <NavLink
+                exact
+                activeStyle={{
+                  fontWeight: 'bold',
+                  color: '#4646bb',
+                  fontSize: '1.8rem',
+                }}
+                to='/add-service'
+              >
+                Add Service
+              </NavLink>
+              <NavLink
+                exact
+                activeStyle={{
+                  fontWeight: 'bold',
+                  color: '#4646bb',
+                  fontSize: '1.8rem',
+                }}
+                to='/inquiry'
+              >
                 <>
                   Inquiry
                   {countInquiries ? (
@@ -138,8 +163,8 @@ function Navigation() {
                     </IconButton>
                   ) : null}
                 </>
-              </Link>
-              <IconButton onClick={handleClick}>
+              </NavLink>
+              <IconButton disableRipple onClick={handleClick}>
                 <Avatar
                   src={user.photoURL!}
                   sx={{ bgcolor: 'rgb(70, 70, 187)' }}
@@ -202,50 +227,119 @@ function Navigation() {
               onClose={handleMobileMenuClose}
             >
               <h2 className={classes.profileTitle}>Menu</h2>
-              <Link to='/'>
-                <MenuItem
-                  onClick={() => {
-                    handleMobileMenuClose()
-                  }}
-                  disableRipple
-                  className={classes.menuItem}
-                >
-                  <p>Services</p>
-                </MenuItem>
-              </Link>
-              <Link to='add-service'>
-                <MenuItem
-                  onClick={() => {
-                    handleMobileMenuClose()
-                  }}
-                  disableRipple
-                  className={classes.menuItem}
-                >
-                  <p>Add Service</p>
-                </MenuItem>
-              </Link>
-              <Link to='inquiry'>
-                <MenuItem
-                  onClick={() => {
-                    handleMobileMenuClose()
-                  }}
-                  disableRipple
-                  className={classes.menuItem}
-                >
-                  <p>Inquiry</p>
-                </MenuItem>
-              </Link>
+              {user ? (
+                <>
+                  <NavLink
+                    exact
+                    activeStyle={{
+                      fontWeight: 'bold',
+                      color: '#4646bb',
+                      fontSize: '2.8rem !important',
+                    }}
+                    to='/'
+                  >
+                    <MenuItem
+                      onClick={() => {
+                        handleMobileMenuClose()
+                      }}
+                      disableRipple
+                      className={classes.menuItem}
+                    >
+                      <p>Services</p>
+                    </MenuItem>
+                  </NavLink>
+                  <NavLink
+                    exact
+                    activeStyle={{
+                      fontWeight: 'bold',
+                      color: '#4646bb',
+                      fontSize: '1.8rem',
+                    }}
+                    to='/add-service'
+                  >
+                    <MenuItem
+                      onClick={() => {
+                        handleMobileMenuClose()
+                      }}
+                      disableRipple
+                      className={classes.menuItem}
+                    >
+                      <p>Add Service</p>
+                    </MenuItem>
+                  </NavLink>
+                  <NavLink
+                    exact
+                    activeStyle={{
+                      fontWeight: 'bold',
+                      color: '#4646bb',
+                      fontSize: '1.8rem',
+                    }}
+                    to='/inquiry'
+                  >
+                    <MenuItem
+                      onClick={() => {
+                        handleMobileMenuClose()
+                      }}
+                      disableRipple
+                      className={classes.menuItem}
+                    >
+                      <p>Inquiry</p>
+                    </MenuItem>
+                  </NavLink>
 
-              <MenuItem
-                onClick={() => {
-                  handleMobileMenuClose()
-                  handleLogout()
-                }}
-                disableRipple
-                className={classes.menuItem}
-              >
-                <p>Sign out</p>
-              </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      handleMobileMenuClose()
+                      handleLogout()
+                    }}
+                    disableRipple
+                    className={classes.menuItem}
+                  >
+                    <p>Sign out</p>
+                  </MenuItem>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    exact
+                    activeStyle={{
+                      fontWeight: 'bold',
+                      color: '#4646bb',
+                      fontSize: '1.8rem',
+                    }}
+                    to='/signin'
+                  >
+                    <MenuItem
+                      onClick={() => {
+                        handleMobileMenuClose()
+                      }}
+                      disableRipple
+                      className={classes.menuItem}
+                    >
+                      <p>Sign In</p>
+                    </MenuItem>
+                  </NavLink>
+                  <NavLink
+                    exact
+                    activeStyle={{
+                      fontWeight: 'bold',
+                      color: '#4646bb',
+                      fontSize: '1.8rem',
+                    }}
+                    to='/signup'
+                  >
+                    <MenuItem
+                      onClick={() => {
+                        handleMobileMenuClose()
+                      }}
+                      disableRipple
+                      className={classes.menuItem}
+                    >
+                      <p>Sign Up</p>
+                    </MenuItem>
+                  </NavLink>
+                </>
+              )}
             </Menu>
           </>
           {/* <FiMenu /> */}

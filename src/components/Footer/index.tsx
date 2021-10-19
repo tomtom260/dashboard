@@ -7,7 +7,7 @@ function Footer() {
   return (
     <div
       className={
-        pathname === '/' || pathname === '/inquiry'
+        pathname === '/'
           ? `${styles.footer} ${styles.footer__snap}`
           : styles.footer
       }

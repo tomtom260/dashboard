@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useReducer, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams, useRouteMatch } from 'react-router'
 import { addService, editService } from '../../store/actions/services'
@@ -7,6 +7,8 @@ import styles from './styles.module.css'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+import { UIContext } from '../../utils/UIProvider'
+import Loading from '../Loading'
 
 type FormData = FormEvent<HTMLFormElement> & {
   target: {
@@ -35,6 +37,7 @@ function ServiceForm({
   const match = useRouteMatch()
   const { id } = useParams<{ id: string }>()
   const { user } = useContext(AuthContext)
+  const { toggleLoadingState, loading } = useContext(UIContext)
 
   const addFeature = () => {
     setFeatures(feats => {
@@ -60,30 +63,38 @@ function ServiceForm({
 
     if (match.path.includes('add')) {
       await dispatch(
-        addService({
-          title,
-          description,
-          addedBy: user?.displayName!,
-          createdAt: Date.now(),
-          features,
-        })
+        addService(
+          {
+            title,
+            description,
+            addedBy: user?.displayName!,
+            createdAt: Date.now(),
+            features,
+          },
+          toggleLoadingState
+        )
       )
     } else {
       await dispatch(
-        editService({
-          title,
-          description,
-          lastModifiedBy: user?.displayName!,
-          lastModifiedAt: Date.now(),
-          id,
-          features,
-        })
+        editService(
+          {
+            title,
+            description,
+            lastModifiedBy: user?.displayName!,
+            lastModifiedAt: Date.now(),
+            id,
+            features,
+          },
+          toggleLoadingState
+        )
       )
     }
     history.push('/')
   }
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <form className={styles.service_form} onSubmit={handleSubmit}>
       <div className={styles.service_form__input}>
         <label htmlFor='title'>Service Title</label>
